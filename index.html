@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EA Golden Engel | Expert Advisor Especializado en Oro XAUUSD</title>
+    <meta name="description" content="EA Golden Engel desarrollado por MetaQuant Studio. Expert Advisor especializado en trading de oro XAUUSD con sistema de trailing stop y gestión avanzada de riesgo.">
+    <meta name="keywords" content="EA ENGEL, XAUUSD, Gold Trading, Expert Advisor, MT4, Forex Gold, MetaQuant Studio, ICMarkets">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MetaQuant Studio Logo" class="nav-logo">
+                <span>EA Golden Engel</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Características</a>
+                <a href="#benefits" class="nav-link">Beneficios</a>
+                <a href="#reviews" class="nav-link">Reseñas</a>
+                <a href="#" class="nav-link" onclick="showAboutUs()">Quiénes Somos</a>
+                <a href="#download" class="nav-link cta-nav">Comprar</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-logo">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MetaQuant Studio Logo" class="hero-logo-img">
+                    </div>
+                    <h1>EA Golden Engel</h1>
+                    <h2>Expert Advisor Especializado para XAUUSD</h2>
+                    <p class="hero-description">
+                        Un robot de trading inteligente creado especialmente para el mercado del oro. Funciona las 24 horas del día, toma decisiones automáticamente y protege tus ganancias mientras minimiza las pérdidas. Es como tener un trader profesional trabajando para ti sin descanso.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">H1</div>
+                            <div class="stat-label">Configuración Ideal</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Trading Automatizado</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">ICMarkets</div>
+                            <div class="stat-label">Broker Recomendado</div>
+                        </div>
+                    </div>
+                    <div class="hero-cta">
+                        <button class="btn btn-primary btn-large" onclick="showPaymentModal()">
+                            <i class="fas fa-shopping-cart"></i>
+                            Comprar Ahora
+                        </button>
+                        <button class="btn btn-secondary btn-large" onclick="scrollToFeatures()">
+                            <i class="fas fa-info-circle"></i>
+                            Ver Características
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="trading-chart">
+                        <div class="chart-header">
+                            <div class="chart-title">XAUUSD - EA Golden Engel</div>
+                            <div class="chart-status active">
+                                <div class="status-dot"></div>
+                                <span>En Vivo</span>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="tradingChart"></canvas>
+                        </div>
+                        <div class="chart-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Win Rate</span>
+                                <span class="metric-value positive">89%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Profit Factor</span>
+                                <span class="metric-value positive">1.89</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Riesgo Controlado</span>
+                                <span class="metric-value">8.2%</span>
+                            </div>
+                        </div>
+                        <div class="server-info">
+                            <div class="server-title">
+                                <i class="fas fa-server"></i>
+                                <span>Cuenta de Lectura ICMarkets</span>
+                            </div>
+                            <div class="server-details">
+                                <div class="server-detail">
+                                    <span class="detail-label">Servidor:</span>
+                                    <span class="detail-value">ICMarketsLive26</span>
+                                </div>
+                                <div class="server-detail">
+                                    <span class="detail-label">Cuenta:</span>
+                                    <span class="detail-value">260070729</span>
+                                </div>
+                                <div class="server-detail">
+                                    <span class="detail-label">Password:</span>
+                                    <span class="detail-value">MetaQuant123</span>
+                                </div>
+                            </div>
+                            <div class="server-note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Cuenta de solo lectura para verificar los resultados del EA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Características Principales</h2>
+                <p>Características especiales que hacen que este robot sea único para el oro</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Especializado Solo en Oro</h3>
+                    <p>Este robot está diseñado específicamente para el mercado del oro, conoce sus movimientos y aprovecha las mejores oportunidades que ofrece este metal precioso.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Protección Inteligente de Ganancias</h3>
+                    <p>Cuando tus operaciones van ganando, el robot mueve automáticamente el punto de protección para asegurar las ganancias y dejar que las operaciones sigan creciendo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>Crecimiento Automático de tu Cuenta</h3>
+                    <p>El robot ajusta automáticamente el tamaño de las operaciones según el crecimiento de tu cuenta, usando solo un pequeño porcentaje para mantener el riesgo bajo control.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Evita Costos Excesivos</h3>
+                    <p>El robot es inteligente y espera a que los costos de operación estén en niveles favorables antes de entrar al mercado, protegiendo tu dinero de gastos innecesarios.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Broker Recomendado</h3>
+                    <p>Funciona perfectamente con ICMarkets, uno de los brokers más confiables del mundo, garantizando que tus operaciones se ejecuten de la mejor manera posible.</p>
+                    <div class="icmarkets-link">
+                        <a href="https://icmarkets.com/?camp=16385" target="_blank" class="btn-icmarkets">
+                            <i class="fas fa-external-link-alt"></i>
+                            Abrir Cuenta
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Estrategia Segura y Conservadora</h3>
+                    <p>No usa estrategias peligrosas que pueden multiplicar las pérdidas. Mantiene siempre el mismo nivel de riesgo, protegiendo tu capital de forma inteligente y responsable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ventajas Competitivas</h2>
+                <p>Por qué elegir nuestro Expert Advisor</p>
+            </div>
+            <div class="benefits-content">
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Desarrollado por MetaQuant Studio</h4>
+                            <p>Creado por MetaQuant Studio, empresa profesional experimentada en estos sistemas</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Configuración Perfecta para Oro</h4>
+                            <p>Diseñado específicamente para el mercado del oro con la configuración de tiempo ideal para obtener los mejores resultados</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Probado con Datos Reales del Mercado</h4>
+                            <p>Probado exhaustivamente con datos históricos reales del mercado para garantizar máxima confiabilidad y resultados consistentes</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Estrategia Segura y Confiable</h4>
+                            <p>Gestión de riesgo conservadora que protege tu capital sin usar estrategias peligrosas que pueden causar grandes pérdidas</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Panel de Estadísticas en Tiempo Real</h4>
+                            <p>Ves en tiempo real cómo está funcionando el robot, con estadísticas claras de rendimiento y resultados de tus operaciones</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="benefits-visual">
+                    <div class="performance-card">
+                        <h3>Rendimiento Comprobado</h3>
+                        <div class="performance-stats">
+                            <div class="perf-stat">
+                                <div class="perf-number">89%</div>
+                                <div class="perf-label">Win Rate Promedio</div>
+                            </div>
+                            <div class="perf-stat">
+                                <div class="perf-number">1.89</div>
+                                <div class="perf-label">Factor de Ganancia</div>
+                            </div>
+                            <div class="perf-stat">
+                                <div class="perf-number">8.2%</div>
+                                <div class="perf-label">Riesgo Controlado por Operación</div>
+                            </div>
+                        </div>
+                        <div class="performance-note">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Resultados basados en pruebas con datos reales del mercado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Configuration Section -->
+    <section class="configuration">
+        <div class="container">
+            <div class="section-header">
+                <h2>Configuración Recomendada</h2>
+                <p>Parámetros óptimos para maximizar el rendimiento</p>
+            </div>
+            <div class="config-grid">
+                <div class="config-card">
+                    <div class="config-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Par de Divisas</h4>
+                    <p><strong>XAUUSD únicamente</strong></p>
+                    <small>Especializado exclusivamente para oro</small>
+                </div>
+                <div class="config-card">
+                    <div class="config-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>Marco Temporal</h4>
+                    <p><strong>H1 (Hora 1)</strong></p>
+                    <small>Timeframe optimizado para XAUUSD</small>
+                </div>
+                <div class="config-card">
+                    <div class="config-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h4>Gestión de Lotes</h4>
+                    <p><strong>2% por defecto</strong></p>
+                    <small>Porcentaje configurable de la cuenta</small>
+                </div>
+                <div class="config-card">
+                    <div class="config-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h4>Broker Recomendado</h4>
+                    <p><strong>ICMarkets</strong></p>
+                    <small>Condiciones optimizadas</small>
+                    <div class="icmarkets-link">
+                        <a href="https://icmarkets.com/?camp=16385" target="_blank" class="btn-icmarkets">
+                            <i class="fas fa-external-link-alt"></i>
+                            Abrir Cuenta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lo Que Dicen Nuestros Usuarios</h2>
+                <p>Testimonios reales de traders que confían en nuestro EA</p>
+            </div>
+            <div class="reviews-container">
+                <div class="reviews-carousel">
+                    <div class="reviews-track" id="reviewsTrack">
+                        <!-- Reviews will be loaded dynamically -->
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="reviews-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Cargando reseñas...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-content">
+                <div class="download-text">
+                    <h2>¿Listo para Comenzar?</h2>
+                    <p>Únete a cientos de traders que ya están obteniendo resultados consistentes con nuestro Expert Advisor especializado en oro.</p>
+                    <div class="download-features">
+                        <div class="download-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Garantía de Satisfacción</span>
+                        </div>
+                        <div class="download-feature">
+                            <i class="fas fa-headset"></i>
+                            <span>Soporte Técnico Incluido</span>
+                        </div>
+                        <div class="download-feature">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Actualizaciones Gratuitas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-card">
+                    <div class="download-header">
+                        <h3>EA Golden Engel</h3>
+                        <div class="download-price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">400</span>
+                            <span class="price-period">Licencia Completa</span>
+                        </div>
+                    </div>
+                    <div class="download-benefits">
+                        <div class="download-benefit">
+                            <i class="fas fa-check"></i>
+                            <span>EA Golden Engel completo</span>
+                        </div>
+                        <div class="download-benefit">
+                            <i class="fas fa-check"></i>
+                            <span>Algoritmo ejecutable listo para usar</span>
+                        </div>
+                        <div class="download-benefit">
+                            <i class="fas fa-check"></i>
+                            <span>Configuración optimizada</span>
+                        </div>
+                        <div class="download-benefit">
+                            <i class="fas fa-check"></i>
+                            <span>Soporte del desarrollador</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-large btn-download" onclick="showPaymentModal()">
+                        <i class="fas fa-credit-card"></i>
+                        Comprar Ahora - $400 USD
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Payment Options Modal -->
+    <div id="paymentModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content payment-modal-large">
+            <div class="modal-header">
+                <h2><i class="fas fa-credit-card"></i> Selecciona tu método de pago</h2>
+                <button class="modal-close" onclick="closePaymentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-summary">
+                    <div class="product-info">
+                        <div class="product-image">
+                            <img src="{{ url_for('static', filename='images/angel.png') }}" alt="EA Golden Engel Angel" class="product-angel-img">
+                        </div>
+                        <div class="product-details">
+                            <h3>EA Golden Engel - Expert Advisor</h3>
+                            <p>Algoritmo especializado en trading de oro XAUUSD</p>
+                        </div>
+                    </div>
+                    <div class="price-info">
+                        <span class="price">$400 USD</span>
+                        <span class="price-note">Pago único</span>
+                    </div>
+                </div>
+                
+                <div class="payment-options-grid">
+                    <div class="payment-option-card primary" onclick="selectPaymentMethod('stripe')">
+                        <div class="payment-option-header">
+                        <div class="payment-option-icon">
+                            <i class="fab fa-stripe"></i>
+                            </div>
+                            <div class="recommended-badge">RECOMENDADO</div>
+                        </div>
+                        <h3>Tarjeta de Crédito/Débito</h3>
+                        <p>Pago seguro con Stripe</p>
+                        <div class="payment-features">
+                            <div class="payment-feature">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>100% Seguro</span>
+                            </div>
+                            <div class="payment-feature">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Todas las Tarjetas</span>
+                            </div>
+                            <div class="payment-feature">
+                                <i class="fas fa-clock"></i>
+                                <span>Entrega Inmediata</span>
+                            </div>
+                        </div>
+                        <div class="payment-amount">$400 USD</div>
+                        <div class="selected-indicator">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option-card" onclick="selectPaymentMethod('bank')">
+                        <div class="payment-option-header">
+                        <div class="payment-option-icon">
+                            <i class="fas fa-university"></i>
+                            </div>
+                        </div>
+                        <h3>Transferencia Bancaria</h3>
+                        <p>México - Santander</p>
+                        <div class="payment-features">
+                            <div class="payment-feature">
+                                <i class="fas fa-bank"></i>
+                                <span>Santander</span>
+                            </div>
+                            <div class="payment-feature">
+                                <i class="fas fa-key"></i>
+                                <span>CLABE incluida</span>
+                            </div>
+                            <div class="payment-feature">
+                                <i class="fas fa-peso-sign"></i>
+                                <span>Pago en MXN</span>
+                            </div>
+                        </div>
+                        <div class="payment-amount">$400 USD</div>
+                        <div class="selected-indicator">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option-card" onclick="selectPaymentMethod('crypto')">
+                        <div class="payment-option-header">
+                        <div class="payment-option-icon">
+                            <i class="fab fa-bitcoin"></i>
+                            </div>
+                        </div>
+                        <h3>Criptomonedas</h3>
+                        <p>Bitcoin, Ethereum, USDT</p>
+                        <div class="payment-features">
+                            <div class="payment-feature">
+                                <i class="fab fa-bitcoin"></i>
+                                <span>Bitcoin</span>
+                            </div>
+                            <div class="payment-feature">
+                                <i class="fab fa-ethereum"></i>
+                                <span>Ethereum</span>
+                            </div>
+                            <div class="payment-feature">
+                                <i class="fas fa-coins"></i>
+                                <span>USDT</span>
+                            </div>
+                        </div>
+                        <div class="payment-amount">$400 USD</div>
+                        <div class="selected-indicator">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option-card" onclick="selectPaymentMethod('wallet')">
+                        <div class="payment-option-header">
+                        <div class="payment-option-icon">
+                            <i class="fas fa-wallet"></i>
+                            </div>
+                        </div>
+                        <h3>Billeteras Digitales</h3>
+                        <p>Neteller y Skrill</p>
+                        <div class="payment-features">
+                            <div class="payment-feature">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Neteller</span>
+                            </div>
+                            <div class="payment-feature">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Skrill</span>
+                            </div>
+                            <div class="payment-feature">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Fácil de usar</span>
+                            </div>
+                        </div>
+                        <div class="payment-amount">$400 USD</div>
+                        <div class="selected-indicator">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="delivery-guarantee">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Entrega garantizada después de confirmar pago</span>
+                    </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closePaymentModal()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+                <button id="continuePaymentBtn" class="btn btn-primary btn-large" onclick="continuePayment()">
+                        <i class="fas fa-arrow-right"></i>
+                    Continuar con el pago
+                    </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-chart-line"></i>
+                        <span>EA Golden Engel</span>
+                    </div>
+                    <p>Expert Advisor desarrollado por MetaQuant Studio, especializado en trading de oro XAUUSD. Tecnología profesional para traders serios.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#" onclick="downloadGuide()">Guía de Instalación</a></li>
+                        <li><a href="https://t.me/METAQUANTstudio" target="_blank">Soporte Técnico</a></li>
+                        <li><a href="#" onclick="showFAQ()">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#" onclick="showDisclaimer()">Descargo de Responsabilidad</a></li>
+                        <li><a href="#" onclick="showTerms()">Términos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <div class="contact-item" onclick="openEmail()" style="cursor: pointer;">
+                            <i class="fas fa-envelope"></i>
+                            <span>metaquantstudio01@gmail.com</span>
+                        </div>
+                        <div class="contact-item" onclick="openTelegram()" style="cursor: pointer;">
+                            <i class="fab fa-telegram"></i>
+                            <span>@METAQUANTstudio</span>
+                        </div>
+                    </div>
+                    
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem;">Únete a Nuestros Canales</h4>
+                    <div class="social-channels">
+                        <div class="channel-item" onclick="openTelegramChannel()" style="cursor: pointer;">
+                            <i class="fab fa-telegram"></i>
+                            <div class="channel-info">
+                                <span class="channel-name">Golden Engel - EA Forex</span>
+                                <span class="channel-description">Resultados y Actualizaciones</span>
+                            </div>
+                        </div>
+                        <div class="channel-item" onclick="openWhatsAppChannel()" style="cursor: pointer;">
+                            <i class="fab fa-whatsapp"></i>
+                            <div class="channel-info">
+                                <span class="channel-name">MetaQuant Studio</span>
+                                <span class="channel-description">Recomendaciones y Soporte</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <div class="footer-logo">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MetaQuant Studio Logo" class="footer-logo-img">
+                </div>
+                    <p>&copy; 2024 EA Golden Engel por MetaQuant Studio. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buy Button -->
+    <div class="floating-buy-bubble" id="floatingBuyBubble">
+        <div class="bubble-content">
+            <div class="bubble-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="bubble-text">
+                <div class="bubble-title">¡Comprar EA!</div>
+                <div class="bubble-price">$400 USD</div>
+            </div>
+            <div class="bubble-close" onclick="toggleFloatingBubble()">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="bubble-pulse"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
